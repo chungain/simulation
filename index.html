@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>봉제 공장 둘러보기</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%2325333a'/%3E%3Crect y='12' width='16' height='4' fill='%23e2ae00'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="topbar" id="topbar">
+      <div class="bar-row">
+        <h1 class="brand" id="brand">봉제 공장 둘러보기</h1>
+        <select id="scenario-select" aria-label="시나리오"></select>
+        <div class="metrics" id="metrics" aria-label="생산 지표">
+          <div class="chip"><span>투입</span><b id="m-spawned">0</b></div>
+          <div class="chip"><span>재공</span><b id="m-wip">0</b></div>
+          <div class="chip"><span>출하</span><b id="m-shipped">0</b></div>
+          <div class="chip bad"><span>불량</span><b id="m-defects">0</b></div>
+        </div>
+        <div class="clock" id="clock" aria-label="게임 시각">08:00</div>
+        <div class="mode" id="mode-toggle" role="group" aria-label="화면">
+          <button class="ctl on" data-mode="view" aria-pressed="true">보기</button>
+          <button class="ctl" data-mode="edit" aria-pressed="false">편집</button>
+        </div>
+      </div>
+      <div class="bar-row controls" id="view-controls">
+        <button class="ctl hidden" id="back-btn"></button>
+        <button class="ctl" id="tour-btn" aria-pressed="false">공정 투어</button>
+        <button class="ctl" id="overview-btn" aria-pressed="false">전체 보기</button>
+        <button class="ctl" id="speed-btn" aria-label="시뮬레이션 속도">속도 1×</button>
+        <button class="ctl" id="event-btn">돌발 상황</button>
+        <button class="ctl on" id="alerts-btn" aria-pressed="true">알림 켬</button>
+      </div>
+      <div class="bar-row controls hidden" id="edit-controls">
+        <span id="dirty-dot" class="dirty hidden" title="저장하지 않은 변경이 있어요">● 저장 안 됨</span>
+        <div class="actions" id="scenario-actions">
+          <button class="ctl" data-act="new">새로 만들기</button>
+          <button class="ctl" data-act="duplicate">복제</button>
+          <button class="ctl" data-act="import">가져오기</button>
+          <button class="ctl" data-act="export">내보내기</button>
+          <button class="ctl on" data-act="save">저장</button>
+        </div>
+      </div>
+      <div class="badges" id="badges" aria-live="off"></div>
+    </header>
+
+    <main>
+      <section class="stage" id="stage">
+        <canvas
+          id="view"
+          role="img"
+          aria-label="봉제 공장 평면도"
+        ></canvas>
+
+        <div class="alert hidden" id="alert" role="status" aria-live="polite"></div>
+
+        <div class="zoom-controls" id="zoom-controls">
+          <button id="zoom-in" aria-label="확대">+</button>
+          <button id="zoom-out" aria-label="축소">−</button>
+          <button id="zoom-fit" class="edit-only hidden" aria-label="전체 맞춤">⤢</button>
+        </div>
+
+        <div class="zone-card hidden" id="zone-card"></div>
+
+        <div class="edit-toolbar hidden" id="edit-toolbar">
+          <div class="seg" id="tools">
+            <button data-tool="select" class="active" title="선택·이동 (V)">선택</button>
+            <button data-tool="path" title="경로 점 찍기 (P)">경로</button>
+            <button data-tool="add-zone" title="구역 그리기 (Z)">+ 구역</button>
+            <button data-tool="add-prop" title="소품 그리기">+ 소품</button>
+          </div>
+          <select id="prop-type" aria-label="소품 종류"></select>
+          <button id="undo" title="실행 취소 (⌘/Ctrl+Z)">되돌리기</button>
+          <button id="redo" title="다시 실행 (⌘/Ctrl+Shift+Z)">다시</button>
+          <label class="check small"><input type="checkbox" id="snap" checked /><span>10px 맞춤</span></label>
+          <span class="hint" id="tool-hint"></span>
+        </div>
+
+        <div class="toasts" id="toasts"></div>
+        <div class="issues hidden" id="issues"></div>
+      </section>
+
+      <aside class="panel hidden" id="panel"></aside>
+    </main>
+
+    <input type="file" id="import-file" accept=".json,application/json" hidden />
+    <dialog id="dialog"></dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

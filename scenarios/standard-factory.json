@@ -1,0 +1,355 @@
+{
+  "$schema": "../src/schema/scenario.schema.json",
+  "id": "standard-factory",
+  "name": "표준 봉제 공장",
+  "description": "원단 입고부터 출하까지 9개 공정과 생산 관리실로 이루어진 티셔츠 봉제 공장",
+  "layout": {
+    "width": 960,
+    "height": 760,
+    "start": [470, 225],
+    "props": [
+      { "type": "door", "rect": [0, 112, 8, 56], "label": "입고 도크" },
+      { "type": "rolls", "rect": [30, 64, 70, 54], "label": "원단 랙" },
+      { "type": "pallet", "rect": [112, 74, 66, 42] },
+      { "type": "worker", "rect": [113, 161, 14, 14] },
+      { "type": "table", "rect": [216, 72, 150, 40], "label": "연단 테이블" },
+      { "type": "worker", "rect": [243, 161, 14, 14] },
+      { "type": "worker", "rect": [323, 161, 14, 14] },
+      { "type": "cutter", "rect": [400, 66, 150, 50], "label": "자동 재단기" },
+      { "type": "worker", "rect": [468, 161, 14, 14] },
+      { "type": "table", "rect": [588, 72, 96, 40] },
+      { "type": "rack", "rect": [694, 64, 40, 60] },
+      { "type": "worker", "rect": [628, 161, 14, 14] },
+      { "type": "desk", "rect": [810, 70, 52, 30] },
+      { "type": "desk", "rect": [874, 70, 52, 30] },
+      { "type": "desk", "rect": [810, 132, 52, 30] },
+      { "type": "desk", "rect": [874, 132, 52, 30] },
+      { "type": "manager", "rect": [829, 108, 14, 14] },
+      { "type": "manager", "rect": [893, 108, 14, 14] },
+      { "type": "manager", "rect": [829, 170, 14, 14] },
+      { "type": "machine", "rect": [220, 272, 34, 22] },
+      { "type": "worker", "rect": [230, 303, 14, 14] },
+      { "type": "machine", "rect": [285, 272, 34, 22] },
+      { "type": "worker", "rect": [295, 303, 14, 14] },
+      { "type": "machine", "rect": [350, 272, 34, 22] },
+      { "type": "worker", "rect": [360, 303, 14, 14] },
+      { "type": "machine", "rect": [570, 272, 34, 22] },
+      { "type": "worker", "rect": [580, 303, 14, 14] },
+      { "type": "machine", "rect": [635, 272, 34, 22] },
+      { "type": "worker", "rect": [645, 303, 14, 14] },
+      { "type": "machine", "rect": [700, 272, 34, 22] },
+      { "type": "worker", "rect": [710, 303, 14, 14] },
+      { "type": "board", "rect": [420, 262, 120, 40], "label": "라인 현황판" },
+      { "type": "manager", "rect": [473, 311, 14, 14] },
+      { "type": "worker", "rect": [160, 383, 14, 14] },
+      { "type": "machine", "rect": [150, 404, 34, 22] },
+      { "type": "worker", "rect": [230, 383, 14, 14] },
+      { "type": "machine", "rect": [220, 404, 34, 22] },
+      { "type": "worker", "rect": [300, 383, 14, 14] },
+      { "type": "machine", "rect": [290, 404, 34, 22] },
+      { "type": "worker", "rect": [370, 383, 14, 14] },
+      { "type": "machine", "rect": [360, 404, 34, 22] },
+      { "type": "worker", "rect": [440, 383, 14, 14] },
+      { "type": "machine", "rect": [430, 404, 34, 22] },
+      { "type": "worker", "rect": [510, 383, 14, 14] },
+      { "type": "machine", "rect": [500, 404, 34, 22] },
+      { "type": "worker", "rect": [580, 383, 14, 14] },
+      { "type": "machine", "rect": [570, 404, 34, 22] },
+      { "type": "worker", "rect": [650, 383, 14, 14] },
+      { "type": "machine", "rect": [640, 404, 34, 22] },
+      { "type": "worker", "rect": [720, 383, 14, 14] },
+      { "type": "machine", "rect": [710, 404, 34, 22] },
+      { "type": "table", "rect": [62, 560, 140, 38], "label": "검사대" },
+      { "type": "worker", "rect": [88, 661, 14, 14] },
+      { "type": "worker", "rect": [158, 661, 14, 14] },
+      { "type": "iron", "rect": [268, 562, 84, 30] },
+      { "type": "iron", "rect": [364, 562, 84, 30] },
+      { "type": "worker", "rect": [303, 661, 14, 14] },
+      { "type": "worker", "rect": [398, 661, 14, 14] },
+      { "type": "table", "rect": [496, 560, 124, 38], "label": "포장대" },
+      { "type": "pallet", "rect": [634, 558, 46, 46] },
+      { "type": "worker", "rect": [523, 661, 14, 14] },
+      { "type": "worker", "rect": [588, 661, 14, 14] },
+      { "type": "pallet", "rect": [726, 556, 62, 50] },
+      { "type": "truck", "rect": [814, 550, 116, 56], "label": "컨테이너 트럭" },
+      { "type": "worker", "rect": [753, 661, 14, 14] }
+    ]
+  },
+  "view": { "playerSpeed": 170, "followSpan": 420, "tourDwell": 14, "alertSeconds": 9, "wipWarn": 6 },
+  "stages": [
+    { "id": "roll", "label": "원단 롤", "shape": "roll", "size": 14 },
+    { "id": "spread", "label": "연단", "shape": "layers", "size": 16 },
+    { "id": "pieces", "label": "재단물", "shape": "pieces", "size": 14 },
+    { "id": "bundle", "label": "번들", "shape": "bundle", "size": 14 },
+    { "id": "sewing", "label": "봉제 중", "shape": "shirt", "size": 14 },
+    { "id": "garment", "label": "완성품", "shape": "shirt", "size": 16 },
+    { "id": "inspected", "label": "검사 완료", "shape": "shirt", "size": 16, "mark": "check" },
+    { "id": "finished", "label": "마감 완료", "shape": "shirt", "size": 16, "mark": "check-tape" },
+    { "id": "box", "label": "박스", "shape": "box", "color": "#b98a52", "size": 14 }
+  ],
+  "zones": [
+    {
+      "id": "office",
+      "name": "생산 관리실",
+      "icon": "🖥️",
+      "rect": [795, 30, 145, 170],
+      "hub": true,
+      "content": {
+        "does": "작업지시를 내리고 라인별 계획과 실적을 챙겨요. 현장에서 올라온 스캔 기록이 모두 여기로 모여요.",
+        "people": "생산 관리자, MES 담당, 머천다이저",
+        "data": ["작업지시·오더 변경", "라인별 계획 대비 실적", "납기 위험 오더"],
+        "point": "현장 데이터는 늦게 올라올 때가 많아요. 그래서 숫자마다 언제 갱신됐는지 함께 보여줘야 해요."
+      }
+    },
+    {
+      "id": "warehouse",
+      "name": "원단 입고",
+      "icon": "🚚",
+      "rect": [20, 30, 170, 170],
+      "station": {
+        "time": 2,
+        "variance": 0.2,
+        "stage": "roll",
+        "capacity": 2,
+        "slots": [
+          [130, 95],
+          [162, 95]
+        ]
+      },
+      "content": {
+        "does": "트럭에서 내린 원단을 롤 단위로 확인하고 랙에 보관해요. 오더마다 원단 색과 로트가 달라요.",
+        "people": "자재 담당, 지게차 기사",
+        "data": ["입고 수량·롤 번호", "원단 로트·염색 차수", "보관 위치"],
+        "point": "자재 담당은 장갑을 끼고 롤을 옮겨요. 롤 바코드는 큰 버튼 한 번으로 찍혀야 해요."
+      }
+    },
+    {
+      "id": "spread",
+      "name": "연단",
+      "icon": "📜",
+      "rect": [205, 30, 170, 170],
+      "station": {
+        "time": 3,
+        "variance": 0.2,
+        "stage": "spread",
+        "capacity": 2,
+        "slots": [
+          [255, 92],
+          [328, 92]
+        ]
+      },
+      "content": {
+        "does": "연단(원단을 재단용으로 여러 겹 펴 쌓는 일)을 해요. 겹 수와 길이는 마커에 맞춰 정해요.",
+        "people": "연단 작업자 2명",
+        "data": ["연단 겹 수·길이", "사용한 롤 번호", "남은 원단(잔단) 길이"],
+        "point": "연단대는 길고 작업자는 계속 걸어 다녀요. 겹 수 입력은 연단대 끝에서 한 번에 끝나야 해요."
+      }
+    },
+    {
+      "id": "cut",
+      "name": "재단",
+      "icon": "✂️",
+      "rect": [390, 30, 170, 170],
+      "station": {
+        "time": 3,
+        "variance": 0.2,
+        "stage": "pieces",
+        "capacity": 1,
+        "slots": [
+          [475, 91]
+        ]
+      },
+      "content": {
+        "does": "마커대로 겹친 원단을 잘라 조각을 만들어요. 요척(옷 한 벌에 드는 원단 길이)이 여기서 정해져요.",
+        "people": "재단사, CAD 마커 담당",
+        "data": ["요척·마커 효율", "사이즈·색상별 재단 수량"],
+        "point": "재단 수량은 사이즈와 색상이 얽혀 있어요. 사이즈×색상 매트릭스 한 화면으로 보여줘야 해요."
+      }
+    },
+    {
+      "id": "bundle",
+      "name": "번들링",
+      "icon": "🏷️",
+      "rect": [575, 30, 170, 170],
+      "station": {
+        "time": 2,
+        "variance": 0.2,
+        "stage": "bundle",
+        "capacity": 2,
+        "slots": [
+          [612, 92],
+          [660, 92]
+        ]
+      },
+      "content": {
+        "does": "재단물을 사이즈·색상별로 묶고 번들 태그를 붙여요. 이 태그가 이후 모든 공정 스캔의 기준이 돼요.",
+        "people": "번들 담당",
+        "data": ["번들 번호·수량", "사이즈·색상", "태그 출력 이력"],
+        "point": "태그가 찢어지거나 번들을 나누는 일이 자주 있어요. 태그 재출력과 번들 분할이 쉬워야 해요."
+      }
+    },
+    {
+      "id": "sew",
+      "name": "봉제 라인",
+      "icon": "🧵",
+      "rect": [100, 250, 690, 200],
+      "wipWarn": 16,
+      "station": { "speed": 22, "stage": "garment", "workingStage": "sewing" },
+      "content": {
+        "does": "미싱사마다 정해진 공정을 맡아 번들을 넘기며 옷을 완성해요. 공정마다 SMV(표준 작업 시간)가 정해져 있어요.",
+        "people": "미싱사, 보조, 라인 반장",
+        "data": ["공정별 번들 스캔 시각", "시간당 생산량", "비가동(고장·대기) 시간"],
+        "point": "재봉사는 양손이 늘 바빠요. 번들 스캔은 1초 안에 끝나야 하고, 반장 화면은 라인이 어디서 막혔는지 바로 보여줘야 해요."
+      }
+    },
+    {
+      "id": "inspect",
+      "name": "검사",
+      "icon": "🔍",
+      "rect": [20, 520, 210, 200],
+      "station": {
+        "time": 2.5,
+        "variance": 0.2,
+        "stage": "inspected",
+        "capacity": 2,
+        "slots": [
+          [100, 579],
+          [165, 579]
+        ],
+        "inspect": true,
+        "defectRate": 0.06,
+        "repair": 4
+      },
+      "content": {
+        "does": "완성된 옷의 치수와 봉제 상태를 봐요. 불량이 나오면 그 자리에서 수선한 뒤 다시 검사해요.",
+        "people": "검사원, QC 담당",
+        "data": ["검사 수량·불량 수", "불량 유형·발생 공정", "DHU(100벌당 불량 수)"],
+        "point": "검사원은 옷을 손에 든 채로 기록해요. 불량 유형은 두세 번 터치로 골라져야 해요."
+      }
+    },
+    {
+      "id": "finish",
+      "name": "마감",
+      "icon": "♨️",
+      "rect": [250, 520, 210, 200],
+      "station": {
+        "time": 2,
+        "variance": 0.2,
+        "stage": "finished",
+        "capacity": 2,
+        "slots": [
+          [310, 577],
+          [406, 577]
+        ]
+      },
+      "content": {
+        "does": "실밥을 정리하고 다림질해 모양을 잡아요. 라벨과 택도 여기서 달아요.",
+        "people": "다림질 작업자, 마무리 작업자",
+        "data": ["마감 수량", "택·라벨 부착 확인"],
+        "point": "다림질대 주변은 열과 스팀이 많아요. 그래서 태블릿보다 고정 스캐너가 맞아요."
+      }
+    },
+    {
+      "id": "pack",
+      "name": "포장",
+      "icon": "📦",
+      "rect": [480, 520, 210, 200],
+      "station": {
+        "time": 2.5,
+        "variance": 0.2,
+        "stage": "box",
+        "capacity": 2,
+        "slots": [
+          [530, 579],
+          [588, 579]
+        ]
+      },
+      "content": {
+        "does": "옷을 접어 폴리백에 넣고 카톤에 담아요. 카톤마다 아소트(사이즈·색상 배분)가 정해져 있어요.",
+        "people": "포장 작업자",
+        "data": ["카톤 번호·내품 수량", "아소트", "카톤 라벨"],
+        "point": "패킹 리스트와 실제 카톤이 다르면 바이어 클레임이 돼요. 담는 순간 수량이 맞는지 보여줘야 해요."
+      }
+    },
+    {
+      "id": "ship",
+      "name": "출하",
+      "icon": "🚛",
+      "rect": [710, 520, 230, 200],
+      "station": {
+        "time": 1.5,
+        "variance": 0.2,
+        "stage": "box",
+        "capacity": 1,
+        "slots": [
+          [757, 581]
+        ]
+      },
+      "content": {
+        "does": "카톤을 팔레트에 쌓아 트럭에 싣고 출하를 확정해요.",
+        "people": "출하 담당, 바이어 검품원",
+        "data": ["출하 수량·카톤 수", "인보이스·패킹 리스트", "컨테이너 번호"],
+        "point": "선적 날짜는 바꿀 수 없어요. 출하 직전에 수량 차이를 빨리 찾아야 해요."
+      }
+    }
+  ],
+  "flow": {
+    "spawnInterval": 3.2,
+    "spawnStage": "roll",
+    "speed": 60,
+    "gap": 22,
+    "fabrics": ["#34507a", "#6b7a3a", "#8a2f3e", "#c99a2e", "#5b6068", "#2f7a74"],
+    "warmup": 90,
+    "startTime": "08:00",
+    "timeScale": 60,
+    "path": [
+      [0, 140],
+      [770, 140],
+      [770, 350],
+      [40, 350],
+      [40, 630],
+      [950, 630]
+    ]
+  },
+  "eventTiming": { "gap": [40, 65], "afterManual": 45 },
+  "events": [
+    {
+      "id": "sewing-breakdown",
+      "label": "미싱 고장",
+      "icon": "🔧",
+      "description": "봉제 라인이 멈추고 미싱 한 대가 빨갛게 깜빡여요. 현황판에는 비가동이 떠요.",
+      "point": "고장 신고는 반장이 버튼 하나로 해야 해요. 비가동 시작과 끝 시각이 남아야 원인을 따질 수 있어요.",
+      "duration": 10,
+      "effect": {
+        "stopZones": ["sew"]
+      }
+    },
+    {
+      "id": "fabric-delay",
+      "label": "원단 입고 지연",
+      "icon": "🚧",
+      "description": "새 원단이 들어오지 않아요. 잠시 뒤 앞 공정부터 일감이 비어요.",
+      "point": "입고가 늦으면 생산 계획이 바로 틀어져요. 입고 예정과 실제를 나란히 보여줘야 해요.",
+      "duration": 12,
+      "effect": { "spawnMultiplier": 0 }
+    },
+    {
+      "id": "rush",
+      "label": "긴급 오더",
+      "icon": "⚡",
+      "description": "원단 투입 간격이 3.2초에서 1.6초로 줄어요. 재단 앞에 줄이 생겨요.",
+      "point": "긴급 오더는 기존 오더 사이에 끼어들어요. 작업지시 순서를 바꾼 이력이 남아야 해요.",
+      "duration": 15,
+      "effect": { "spawnMultiplier": 2 }
+    },
+    {
+      "id": "defect-surge",
+      "label": "불량 다발",
+      "icon": "🚨",
+      "description": "검사 불량률이 6%에서 35%로 올라요. 검사대에서 수선 중인 옷이 늘어나요.",
+      "point": "불량이 몰리면 발생 공정을 빨리 찾아야 해요. 불량 유형과 공정이 함께 기록돼야 해요.",
+      "duration": 15,
+      "effect": { "defectRate": 0.35 }
+    }
+  ]
+}

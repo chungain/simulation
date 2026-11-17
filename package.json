@@ -1,0 +1,22 @@
+{
+  "name": "factory-simulation",
+  "private": true,
+  "version": "0.1.0",
+  "description": "봉제 공장 시뮬레이션 — 시나리오 JSON 기반 2D 엔진과 웹 편집기",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "validate": "node scripts/validate.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "json-source-map": "^0.6.1"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}

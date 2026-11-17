@@ -1,0 +1,409 @@
+{
+  "$schema": "../src/schema/scenario.schema.json",
+  "id": "buyer-vendor",
+  "name": "바이어·벤더 오더 흐름",
+  "description": "바이어 본사, 벤더 사무실, 공장·물류를 오가며 오더 하나가 기획부터 정산까지 가는 흐름",
+  "kind": "supply-chain",
+  "layout": {
+    "width": 1200,
+    "height": 760,
+    "start": [600, 215],
+    "areas": [
+      { "name": "바이어 본사", "icon": "🏢", "rect": [20, 20, 370, 720] },
+      { "name": "벤더 사무실", "icon": "🗂️", "rect": [410, 20, 370, 720] },
+      { "name": "공장·물류", "icon": "🏭", "rect": [800, 20, 380, 720] }
+    ],
+    "props": [
+      { "type": "desk", "rect": [56, 290, 46, 26] },
+      { "type": "desk", "rect": [116, 290, 46, 26] },
+      { "type": "manager", "rect": [72, 326, 14, 14] },
+      { "type": "manager", "rect": [132, 326, 14, 14] },
+      { "type": "desk", "rect": [60, 98, 46, 26] },
+      { "type": "desk", "rect": [126, 98, 46, 26] },
+      { "type": "manager", "rect": [76, 133, 14, 14] },
+      { "type": "manager", "rect": [142, 133, 14, 14] },
+      { "type": "table", "rect": [236, 96, 70, 30], "label": "디자인 테이블" },
+      { "type": "desk", "rect": [318, 98, 46, 26] },
+      { "type": "worker", "rect": [253, 133, 14, 14] },
+      { "type": "worker", "rect": [333, 133, 14, 14] },
+      { "type": "rack", "rect": [236, 270, 44, 40], "label": "샘플 랙" },
+      { "type": "table", "rect": [296, 276, 60, 30] },
+      { "type": "manager", "rect": [319, 353, 14, 14] },
+      { "type": "worker", "rect": [243, 353, 14, 14] },
+      { "type": "rack", "rect": [236, 620, 50, 30] },
+      { "type": "pallet", "rect": [300, 620, 54, 30] },
+      { "type": "worker", "rect": [293, 698, 14, 14] },
+      { "type": "desk", "rect": [446, 98, 46, 26] },
+      { "type": "desk", "rect": [512, 98, 46, 26] },
+      { "type": "manager", "rect": [462, 133, 14, 14] },
+      { "type": "worker", "rect": [528, 133, 14, 14] },
+      { "type": "table", "rect": [624, 96, 64, 30], "label": "패턴 테이블" },
+      { "type": "machine", "rect": [702, 100, 34, 22] },
+      { "type": "worker", "rect": [643, 133, 14, 14] },
+      { "type": "worker", "rect": [712, 133, 14, 14] },
+      { "type": "desk", "rect": [446, 266, 46, 26] },
+      { "type": "desk", "rect": [512, 266, 46, 26] },
+      { "type": "desk", "rect": [600, 266, 46, 26] },
+      { "type": "worker", "rect": [462, 297, 14, 14] },
+      { "type": "worker", "rect": [616, 297, 14, 14] },
+      { "type": "board", "rect": [660, 256, 100, 36], "label": "오더 현황판" },
+      { "type": "desk", "rect": [446, 446, 46, 26] },
+      { "type": "rolls", "rect": [512, 440, 64, 40], "label": "원단 견본" },
+      { "type": "worker", "rect": [462, 533, 14, 14] },
+      { "type": "desk", "rect": [446, 616, 46, 26] },
+      { "type": "desk", "rect": [512, 616, 46, 26] },
+      { "type": "worker", "rect": [462, 698, 14, 14] },
+      { "type": "rolls", "rect": [830, 80, 100, 56], "label": "원단 창고" },
+      { "type": "rolls", "rect": [950, 80, 100, 56] },
+      { "type": "pallet", "rect": [1070, 84, 80, 48], "label": "부자재" },
+      { "type": "truck", "rect": [830, 200, 120, 40], "label": "원단 입고 트럭" },
+      { "type": "desk", "rect": [1000, 200, 46, 26], "label": "공장 사무실" },
+      { "type": "desk", "rect": [1060, 200, 46, 26] },
+      { "type": "manager", "rect": [1016, 245, 14, 14] },
+      { "type": "worker", "rect": [873, 273, 14, 14] },
+      { "type": "worker", "rect": [1076, 245, 14, 14] },
+      { "type": "cart", "rect": [960, 300, 40, 30] },
+      { "type": "cart", "rect": [1020, 300, 40, 30] },
+      { "type": "machine", "rect": [850, 446, 34, 22] },
+      { "type": "worker", "rect": [860, 475, 14, 14] },
+      { "type": "machine", "rect": [920, 446, 34, 22] },
+      { "type": "worker", "rect": [930, 475, 14, 14] },
+      { "type": "machine", "rect": [990, 446, 34, 22] },
+      { "type": "worker", "rect": [1000, 475, 14, 14] },
+      { "type": "machine", "rect": [1060, 446, 34, 22] },
+      { "type": "worker", "rect": [1070, 475, 14, 14] },
+      { "type": "worker", "rect": [890, 511, 14, 14] },
+      { "type": "machine", "rect": [880, 530, 34, 22] },
+      { "type": "worker", "rect": [960, 511, 14, 14] },
+      { "type": "machine", "rect": [950, 530, 34, 22] },
+      { "type": "worker", "rect": [1030, 511, 14, 14] },
+      { "type": "machine", "rect": [1020, 530, 34, 22] },
+      { "type": "worker", "rect": [1100, 511, 14, 14] },
+      { "type": "machine", "rect": [1090, 530, 34, 22] },
+      { "type": "board", "rect": [1110, 440, 46, 30] },
+      { "type": "table", "rect": [1020, 620, 120, 30], "label": "검품대" },
+      { "type": "manager", "rect": [1053, 698, 14, 14] },
+      { "type": "worker", "rect": [1103, 698, 14, 14] },
+      { "type": "truck", "rect": [836, 616, 120, 36], "label": "컨테이너 트럭" },
+      { "type": "worker", "rect": [863, 698, 14, 14] }
+    ]
+  },
+  "view": { "playerSpeed": 170, "followSpan": 420, "tourDwell": 14, "alertSeconds": 9, "wipWarn": 6 },
+  "stages": [
+    { "id": "plan", "label": "시즌 기획", "shape": "doc", "size": 14 },
+    { "id": "po", "label": "PO", "shape": "doc", "size": 14 },
+    { "id": "techpack", "label": "테크팩", "shape": "doc", "size": 16 },
+    { "id": "order", "label": "확정 오더", "shape": "doc", "size": 16, "mark": "check" },
+    { "id": "sample", "label": "샘플", "shape": "shirt", "size": 14 },
+    { "id": "approved", "label": "승인 샘플", "shape": "shirt", "size": 14, "mark": "check-tape" },
+    { "id": "material", "label": "원부자재", "shape": "roll", "size": 14 },
+    { "id": "sewing", "label": "생산 중", "shape": "shirt", "size": 14 },
+    { "id": "garment", "label": "완성품", "shape": "shirt", "size": 16 },
+    { "id": "carton", "label": "카톤", "shape": "box", "color": "#b98a52", "size": 14 },
+    { "id": "container", "label": "컨테이너", "shape": "container", "color": "#c0583a", "size": 16 },
+    { "id": "received", "label": "입고 완료", "shape": "box", "color": "#b98a52", "size": 14, "mark": "check" }
+  ],
+  "zones": [
+    {
+      "id": "sourcing",
+      "name": "소싱팀",
+      "icon": "🧭",
+      "rect": [40, 250, 140, 130],
+      "hub": true,
+      "content": {
+        "does": "어느 벤더에 어떤 오더를 맡길지 정하고, 벤더별 납기·품질·원가 기록을 관리해요. 오더마다 진행 상황이 이곳으로 모여요.",
+        "people": "소싱 매니저, 벤더 관리 담당",
+        "data": ["벤더 평가(납기 준수율·불량률)", "오더별 진행 단계", "원가 비교"],
+        "point": "소싱팀은 벤더 수십 곳의 오더를 동시에 봐요. 그래서 늦어지는 오더만 먼저 걸러 보여줘야 해요."
+      }
+    },
+    {
+      "id": "md",
+      "name": "MD",
+      "icon": "📋",
+      "rect": [40, 70, 160, 130],
+      "station": {
+        "time": 5,
+        "variance": 0.2,
+        "stage": "po",
+        "capacity": 2,
+        "slots": [
+          [82, 112],
+          [148, 112]
+        ]
+      },
+      "content": {
+        "does": "시즌 기획에 맞춰 스타일과 수량을 정하고 PO(구매 발주서)를 내요. 납기와 목표 원가도 이때 정해져요.",
+        "people": "MD(머천다이저), 바잉 담당",
+        "data": ["PO 번호·스타일·수량", "사이즈·색상 배분", "납기·목표 원가"],
+        "point": "PO는 나온 뒤에도 수량과 납기가 자주 바뀌어요. 바뀐 이력이 벤더 쪽 화면에 바로 보여야 해요."
+      }
+    },
+    {
+      "id": "design",
+      "name": "디자인·테크",
+      "icon": "📐",
+      "rect": [220, 70, 150, 130],
+      "station": {
+        "time": 6,
+        "variance": 0.2,
+        "stage": "techpack",
+        "capacity": 2,
+        "slots": [
+          [270, 111],
+          [341, 111]
+        ]
+      },
+      "content": {
+        "does": "디자인 도면과 치수표, 원부자재 사양을 묶어 테크팩(작업 지시서 묶음)을 만들어요. 벤더는 이걸 보고 샘플을 떠요.",
+        "people": "디자이너, 테크니컬 디자이너",
+        "data": ["테크팩 버전", "치수표(사이즈 스펙)", "원부자재 사양"],
+        "point": "테크팩은 여러 번 고쳐져요. 벤더가 지금 보고 있는 버전이 최신인지 한눈에 알 수 있어야 해요."
+      }
+    },
+    {
+      "id": "sales",
+      "name": "영업·MR",
+      "icon": "🤝",
+      "rect": [430, 70, 160, 130],
+      "station": {
+        "time": 4,
+        "variance": 0.2,
+        "stage": "order",
+        "capacity": 2,
+        "slots": [
+          [469, 111],
+          [535, 111]
+        ]
+      },
+      "content": {
+        "does": "바이어 오더를 받아 원가를 견적하고 생산 일정을 잡아요. 벤더 쪽 MR(머천다이저)이 바이어와의 모든 연락을 맡아요.",
+        "people": "영업 담당, MR",
+        "data": ["오더 확정 내역", "원가 견적(FOB, 본선 인도 가격)", "생산 일정"],
+        "point": "MR은 바이어 여러 곳의 메일과 메신저를 오가요. 오더별로 대화와 결정 사항이 한곳에 쌓여야 해요."
+      }
+    },
+    {
+      "id": "sample",
+      "name": "샘플실",
+      "icon": "🧷",
+      "rect": [610, 70, 150, 130],
+      "station": {
+        "time": 8,
+        "variance": 0.2,
+        "stage": "sample",
+        "capacity": 3,
+        "slots": [
+          [640, 111],
+          [690, 111],
+          [740, 111]
+        ]
+      },
+      "content": {
+        "does": "테크팩대로 패턴을 뜨고 샘플을 만들어 바이어에게 보내요. 반려되면 고쳐서 다시 보내요.",
+        "people": "패턴사, 샘플 미싱사",
+        "data": ["샘플 차수(1차·2차…)", "발송일·운송장 번호", "수정 요청 내용"],
+        "point": "샘플은 몇 번씩 오가요. 차수마다 무엇을 고쳤는지 사진과 함께 남아야 다음 수정이 빨라요."
+      }
+    },
+    {
+      "id": "fitting",
+      "name": "피팅·승인",
+      "icon": "🧍",
+      "rect": [220, 250, 150, 130],
+      "station": {
+        "time": 5,
+        "variance": 0.2,
+        "stage": "approved",
+        "capacity": 2,
+        "slots": [
+          [262, 334],
+          [330, 334]
+        ],
+        "inspect": true,
+        "defectRate": 0.25,
+        "repair": 6
+      },
+      "content": {
+        "does": "샘플을 모델에게 입혀 핏과 치수를 보고 승인하거나 반려해요. 반려되면 벤더가 수정 샘플을 다시 보내요.",
+        "people": "테크니컬 디자이너, 피팅 모델, MD",
+        "data": ["피팅 코멘트", "승인·반려 결과와 사유", "승인 샘플 번호"],
+        "point": "피팅 코멘트는 사진 위에 직접 표시하는 경우가 많아요. 벤더가 말로 된 설명 없이도 고칠 곳을 알 수 있어야 해요."
+      }
+    },
+    {
+      "id": "purchase",
+      "name": "구매",
+      "icon": "🧾",
+      "rect": [430, 420, 160, 130],
+      "station": {
+        "time": 10,
+        "variance": 0.2,
+        "stage": "material",
+        "capacity": 3,
+        "slots": [
+          [462, 498],
+          [500, 470],
+          [560, 498]
+        ]
+      },
+      "content": {
+        "does": "승인된 사양대로 원단과 부자재를 발주하고 입고를 챙겨요. 원단이 늦으면 생산 전체가 밀려요.",
+        "people": "구매 담당, 원단 업체",
+        "data": ["원부자재 발주서", "입고 예정일·실제 입고일", "요척 기준 소요량"],
+        "point": "원단 입고 날짜가 생산 시작을 정해요. 늦어질 기미가 보이면 바이어에게 먼저 알릴 수 있어야 해요."
+      }
+    },
+    {
+      "id": "production",
+      "name": "공장 생산",
+      "icon": "🏭",
+      "rect": [820, 420, 340, 130],
+      "link": "standard-factory",
+      "wipWarn": 12,
+      "station": { "speed": 12, "stage": "garment", "workingStage": "sewing" },
+      "content": {
+        "does": "재단부터 봉제, 마감, 포장까지 공장 라인에서 옷을 만들어요. 카드 아래 버튼으로 공장 안으로 들어가 볼 수 있어요.",
+        "people": "공장장, 라인 반장, 미싱사",
+        "data": ["일별 생산 실적", "라인별 진척률", "공정 불량률"],
+        "point": "바이어는 공장 안을 직접 보지 못해요. 그래서 진척률과 예상 완료일을 매일 같은 기준으로 보여줘야 해요."
+      }
+    },
+    {
+      "id": "inspection",
+      "name": "제3자 검품",
+      "icon": "🔎",
+      "rect": [1000, 600, 160, 130],
+      "station": {
+        "time": 3,
+        "variance": 0.2,
+        "stage": "carton",
+        "capacity": 2,
+        "slots": [
+          [1050, 635],
+          [1110, 635]
+        ],
+        "inspect": true,
+        "defectRate": 0.06,
+        "repair": 4
+      },
+      "content": {
+        "does": "선적 전에 바이어가 지정한 검품원이 AQL(합격 품질 수준) 기준으로 무작위 검사를 해요. 떨어지면 재작업 뒤 다시 검품해요.",
+        "people": "검품원, 벤더 QA",
+        "data": ["AQL 결과(합격·불합격)", "불량 유형별 수량", "재검품 일정"],
+        "point": "검품에 떨어지면 선적 날짜가 바로 위험해져요. 결과가 나오는 즉시 바이어와 벤더가 같이 봐야 해요."
+      }
+    },
+    {
+      "id": "shipping",
+      "name": "선적",
+      "icon": "🚢",
+      "rect": [820, 600, 160, 130],
+      "station": {
+        "time": 12,
+        "variance": 0.2,
+        "stage": "container",
+        "capacity": 3,
+        "slots": [
+          [850, 690],
+          [900, 690],
+          [950, 690]
+        ]
+      },
+      "content": {
+        "does": "카톤을 컨테이너에 싣고 배에 실어 보내요. 포워더(운송 대행사)가 선복 예약과 서류를 맡아요.",
+        "people": "포워더, 벤더 선적 담당",
+        "data": ["B/L(선하증권) 번호", "컨테이너 번호", "출항·도착 예정일"],
+        "point": "배는 정해진 날 떠나요. 선복을 못 잡으면 일주일씩 밀리니 예약 상태를 미리 보여줘야 해요."
+      }
+    },
+    {
+      "id": "dc",
+      "name": "물류센터·정산",
+      "icon": "🏬",
+      "rect": [220, 600, 150, 130],
+      "station": {
+        "time": 3,
+        "variance": 0.2,
+        "stage": "received",
+        "capacity": 2,
+        "slots": [
+          [262, 672],
+          [330, 672]
+        ]
+      },
+      "content": {
+        "does": "도착한 카톤을 입고하고 수량을 맞춘 뒤 인보이스(대금 청구서)를 정산해요. L/C(신용장) 결제도 이때 끝나요.",
+        "people": "물류센터 입고 담당, 재무 담당",
+        "data": ["입고 수량·차이", "인보이스 금액", "결제일"],
+        "point": "입고 수량이 패킹 리스트와 다르면 정산이 멈춰요. 차이가 난 카톤을 바로 짚어 줄 수 있어야 해요."
+      }
+    }
+  ],
+  "flow": {
+    "spawnInterval": 6,
+    "spawnStage": "plan",
+    "speed": 100,
+    "gap": 22,
+    "fabrics": ["#34507a", "#6b7a3a", "#8a2f3e", "#c99a2e", "#5b6068", "#2f7a74"],
+    "warmup": 150,
+    "clockFormat": "day",
+    "timeScale": 86400,
+    "path": [
+      [30, 160],
+      [790, 160],
+      [790, 330],
+      [200, 330],
+      [200, 500],
+      [1170, 500],
+      [1170, 670],
+      [240, 670]
+    ]
+  },
+  "eventTiming": { "gap": [40, 65], "afterManual": 45 },
+  "events": [
+    {
+      "id": "sample-reject",
+      "label": "샘플 반려 다발",
+      "icon": "🔁",
+      "description": "피팅에서 샘플 반려율이 25%에서 60%로 올라요. 피팅·승인 구역에 수정 중인 샘플이 쌓여요.",
+      "point": "반려 사유가 말로만 오가면 같은 실수가 반복돼요. 사유를 항목으로 남겨야 벤더가 패턴을 바로 고쳐요.",
+      "duration": 20,
+      "effect": {
+        "defectRate": 0.6,
+        "defectZones": ["fitting"]
+      }
+    },
+    {
+      "id": "fabric-delay",
+      "label": "원단 입고 지연",
+      "icon": "🚧",
+      "description": "벤더 구매가 멈춰요. 승인된 오더가 생산에 들어가지 못하고 줄을 서요.",
+      "point": "원단이 늦으면 납기가 같이 밀려요. 늦어지는 오더와 영향받는 선적 날짜를 함께 보여줘야 해요.",
+      "duration": 14,
+      "effect": {
+        "stopZones": ["purchase"]
+      }
+    },
+    {
+      "id": "reorder",
+      "label": "긴급 리오더",
+      "icon": "⚡",
+      "description": "잘 팔린 스타일의 리오더가 몰려 PO가 두 배로 들어와요. 샘플실과 구매 앞에 줄이 생겨요.",
+      "point": "리오더는 승인 샘플을 다시 쓰는 경우가 많아요. 기존 오더 기록을 그대로 이어받을 수 있어야 해요.",
+      "duration": 20,
+      "effect": { "spawnMultiplier": 2 }
+    },
+    {
+      "id": "vessel-shortage",
+      "label": "선복 부족",
+      "icon": "🚢",
+      "description": "배에 실을 자리를 못 잡아 선적이 멈춰요. 검품을 마친 카톤이 쌓여요.",
+      "point": "선적이 밀리면 바이어 매장 입고도 밀려요. 다음 배 일정과 항공 전환 비용을 같이 보여줘야 해요.",
+      "duration": 14,
+      "effect": {
+        "stopZones": ["shipping"]
+      }
+    }
+  ]
+}
